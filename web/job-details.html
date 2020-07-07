@@ -28,7 +28,6 @@
 
     <!-- Custom  Css -->
     <link rel="stylesheet" type="text/css" href="css/style.css" />
-
 </head>
 
 <body>
@@ -295,9 +294,18 @@
                                 </ul>
                             </div>
                         </div>
+                        <div v-if="isShow"  class="job-detail border rounded mt-4"  >
+                           
+                            <button   class="btn btn-block insert" style="color: antiquewhite; background:rgb(66, 65, 66);">该岗位已申请</button>
+             
+                        </div>
 
-                        <div class="job-detail border rounded mt-4">
-                            <a href="#" class="btn btn-primary btn-block" v-on:click='insert'>申请这份职位</a>
+                        <div class="job-detail border rounded mt-4"  v-if="isShow2">
+                            <button  @click="showPane"  class="btn btn-primary btn-block insert" id="insert"><a href="#" v-on:click='insert' style="color: antiquewhite;">申请这份工作</a></button> 
+                            
+                            <!-- <a href="#" class="btn btn-primary btn-block insert" id="insert" v-on:click='insert'>{{insert1}}</a> -->
+                            
+                            
                         </div>
                     </div>
                 </div>
@@ -391,7 +399,9 @@
                 data: {
                     info: {},
                     namer: "",
-                    newlin: ""
+                    newlin: "",
+                    isShow:false,
+                    isShow2:true,
                 },
                 mounted() {
                     name = this.getUrlKey("name", window.location.href)
@@ -478,11 +488,20 @@
                                     console.log('.....', error)
                                 })
                         }
-                    }
+                    },
+                    showPane:function(){
+                        app.isShow=true;
+                        app.isShow2=false;
+                    },
+                   
+
+              
 
 
                 }
+             
             })
+            
     </script>
 </body>
 
